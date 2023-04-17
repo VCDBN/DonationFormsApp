@@ -53,6 +53,10 @@ namespace DonationFormsApp
 
             dtaDonationReport.DataSource = ListUtil.donations.
                 Where(x => x.DonorId.Equals(currentDonor)).ToList();
+
+            double total = ListUtil.donations.Where(x => x.DonorId.Equals(currentDonor)).Select(y => y.Amount).Sum();
+
+            MessageBox.Show("Total is R " + total);
         }
     }
 }

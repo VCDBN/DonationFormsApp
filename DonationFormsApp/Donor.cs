@@ -8,7 +8,6 @@ namespace DonationFormsApp
 {
     internal class Donor
     {
-
         public Donor(int donorId, string name, string surname, string phone, string email)
         {
             DonorId = donorId;
@@ -17,7 +16,7 @@ namespace DonationFormsApp
             Phone = phone;
             Email = email;
         }
-
+        
         public int DonorId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }

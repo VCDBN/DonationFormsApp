@@ -128,7 +128,7 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txbName);
             this.Name = "frmAddDonor";
-            this.Text = "Add a Donor";
+            this.Text = "Add a Donor";            
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -90,6 +90,7 @@
             // 
             // cmbDonor
             // 
+            this.cmbDonor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDonor.FormattingEnabled = true;
             this.cmbDonor.Location = new System.Drawing.Point(121, 33);
             this.cmbDonor.Name = "cmbDonor";

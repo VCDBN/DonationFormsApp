@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -21,8 +22,14 @@ namespace DonationFormsApp
         {
             // for you to do: Add error checking (nulls, numeric value, valid email, etc.)
 
-            Donor donor = new(ListUtil.donorList.Count+1, txbName.Text, 
-                txbSurname.Text, txbPhone.Text, txbEmail.Text);
+            int donorId = ListUtil.donorList.Count + 1;
+            string name = txbName.Text;
+            string surname = txbSurname.Text;
+            string phone = txbPhone.Text;
+            string email = txbEmail.Text;
+
+            Donor donor = new Donor(donorId, name, surname, phone, email);
+
             ListUtil.donorList.Add(donor);
 
             MessageBox.Show("Donor Added");

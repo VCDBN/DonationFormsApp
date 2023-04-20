@@ -43,6 +43,7 @@
             this.btnAddDonor.Text = "Add Donor";
             this.btnAddDonor.UseVisualStyleBackColor = true;
             this.btnAddDonor.Click += new System.EventHandler(this.btnAddDonor_Click);
+            
             // 
             // btnCaptureDonation
             // 

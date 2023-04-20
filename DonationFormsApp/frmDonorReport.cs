@@ -20,8 +20,13 @@ namespace DonationFormsApp
         private void frmDonorReport_Load(object sender, EventArgs e)
         {
             // get list of emails of all donors and add to the combo box
-            List<string> donors = ListUtil.donorList.Select(x => x.Email).ToList();
-            cmbDonor.DataSource = donors;
+            List<string> donorEmails = new List<string>();
+
+            foreach (Donor don  in ListUtil.donorList)
+            {
+                donorEmails.Add(don.Email);
+            }
+            cmbDonor.DataSource = donorEmails;
 
             // set the listbox and datagridview source to all donations (we show all until user filters)
             lstDonationReport.DataSource = ListUtil.donations;
@@ -30,31 +35,30 @@ namespace DonationFormsApp
 
         private void btnGenerateReport_Click(object sender, EventArgs e)
         {
-            // get selected combo box value
             string selectedDonor = cmbDonor.Text;
 
-            // You try the long way... (I did it using LINQ below)
-            // 1. loop through the donor list
-            // 2. find name that matches
-            // 3. get the id of that object
-            // 4. store it in an int (currentDonor).
-
-            int currentDonor = ListUtil.donorList.Where(x => x.Email.
-                    Equals(selectedDonor)).First().DonorId;
-
-            // You try the long way... (I did it using LINQ below)
-            // 1. loop through the donations list
-            // 2. find every donation where the donor id matches the currentDonor
-            // 3. get a list of "matching"  objects
-            // 4. set the listbox/datagridview datasource as the list we got
-
-            lstDonationReport.DataSource = ListUtil.donations.
-                    Where(x => x.DonorId.Equals(currentDonor)).ToList();
-
-            dtaDonationReport.DataSource = ListUtil.donations.
-                Where(x => x.DonorId.Equals(currentDonor)).ToList();
-
-            double total = ListUtil.donations.Where(x => x.DonorId.Equals(currentDonor)).Select(y => y.Amount).Sum();
+            int currentDonorId = 0;
+            foreach (Donor don in ListUtil.donorList)
+            {
+                if (don.Email == selectedDonor)
+                {
+                    currentDonorId = don.DonorId; 
+                    break;
+                }
+            }
+            
+            List<Donation> filteredDonations = new List<Donation>();
+            double total = 0;
+            foreach (Donation donation in ListUtil.donations)
+            {
+                if (donation.DonorId == currentDonorId)
+                {
+                    filteredDonations.Add(donation);
+                    total += donation.Amount;
+                }                    
+            }
+            lstDonationReport.DataSource = filteredDonations;
+            dtaDonationReport.DataSource = filteredDonations;
 
             MessageBox.Show("Total is R " + total);
         }

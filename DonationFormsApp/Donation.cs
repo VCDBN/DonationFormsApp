@@ -21,7 +21,6 @@ namespace DonationFormsApp
         public double Amount { get; set; }
         public string Cause { get; set; }
         public int DonorId { get; set; }
-
         
         public override bool Equals(object? obj)
         {
@@ -37,8 +36,7 @@ namespace DonationFormsApp
                 Amount == d.Amount &&
                 DonorId == d.DonorId;
             }            
-        }
-        
+        }        
 
         public override string? ToString()
         {

@@ -22,8 +22,5 @@ namespace DonationFormsApp
             donations.Add(new Donation(1, 1000, "AACL", 1));
             donations.Add(new Donation(2, 2000, "Childline", 2));
         }
-
-        
-
     }
 }
